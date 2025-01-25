@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="MyAppWindow" parent="GtkApplicationWindow">
+    <property name="title">GTK4 Test</property>
+    <property name="default-width">800</property>
+    <property name="default-height">600</property>
+    <child>
+      <object class="GtkGrid" id="main_grid">
+        <property name="margin-start">12</property>
+        <property name="margin-end">12</property>
+        <property name="margin-top">12</property>
+        <property name="margin-bottom">12</property>
+        <property name="row-spacing">12</property>
+        <property name="column-spacing">12</property>
+        <!-- Leftmost column - Row 0, Col 0 - label0 -->
+        <child>
+          <object class="GtkFrame" id="label_frame0">
+            <layout>
+                  <property name="row">0</property>
+                  <property name="column">0</property>
+            </layout>
+            <child>
+              <object class="GtkLabel" id="label0">
+                <property name="label">label0</property>
+                <property name="hexpand">true</property> 
+                <property name="vexpand">false</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <!-- Leftmost column - Row 1, Col 0 - label1 -->
+        <child>
+          <object class="GtkFrame" id="label_frame1">
+            <layout>
+                  <property name="row">1</property>
+                  <property name="column">0</property>
+            </layout>
+            <child>
+              <object class="GtkLabel" id="label1">
+                <property name="label">label1</property>
+                <property name="hexpand">true</property> 
+                <property name="vexpand">false</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <!-- Bottom button - button0 -->
+        <child>
+          <object class="GtkButton" id="button0">
+            <property name="label">Click Me</property>
+            <layout>
+              <property name="row">2</property>
+              <property name="column">0</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child> 
+  </template>
+</interface>
