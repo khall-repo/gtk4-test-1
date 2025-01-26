@@ -1,0 +1,51 @@
+This project loads UI resource from file, but you can also compile and register
+UI resource on the system.
+
+The process for compiling and registering UI resources is as follows:
+
+1. Create one or more legit .ui (XML) resource files you want to use.
+
+2. Make another .xml file that describes what resource files you intend to use.
+This is the one I made, called resources.xml:
+
+[xml example start]
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/com/example/app">
+    <file>application.ui</file>
+    <file>menus.ui</file>
+  </gresource>
+</gresources>
+[xml example end]
+
+"/com/example/app" is not a path on your hdd, per se.. I believe it's a DBUS
+path or something like that. It's completely made up. It can probably be some-
+thing like "/path/to/uifile". This is just the path you'll be using in your
+code to locate the resources that we're going to register.
+
+3. Compile the resources with glib-compile-resources:
+$ glib-compile-resources resources.xml --generate-source --target=resources.c
+ then do
+$ glib-compile-resources resources.xml --generate-header --target=resources.h
+
+You'll now have two source files, resources.c and resources.h. Make sure your
+Makefile compiles the .c and points to the location of the .h.
+
+4. Include resources.h in your source code file.
+
+5. In your code, before you do anything with gtk, you register the resources
+with "g_resources_register(resources_get_resource())"
+
+int main (int argc, char *argv[])
+{
+  GtkApplication *app;
+
+  g_resources_register(resources_get_resource());
+
+  ... other stuff ...
+}
+
+"resources_get_resource()" is in the source files that were generated in step
+#3.
+
+The end.
